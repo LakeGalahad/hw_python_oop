@@ -1,5 +1,6 @@
 import datetime as dt
 
+
 class Calculator:
     def __init__(self, limit):
         """Инициализировать данные создаваемого объекта."""
@@ -70,15 +71,15 @@ class CashCalculator(Calculator):
             return 'Денег нет, держись'
         # Определение валюты.
         RATE_DICT = {
-        'rub': ('руб', 1.00),
-        'usd': ('USD', CashCalculator.USD_RATE),
-        'eur': ('Euro', CashCalculator.EURO_RATE)
+            'rub': ('руб', 1.00),
+            'usd': ('USD', CashCalculator.USD_RATE),
+            'eur': ('Euro', CashCalculator.EURO_RATE)
         }
         if currency in RATE_DICT:
-            cash_left = round(cash_left / RATE_DICT[currency][1], 2)
+            str_currency, rate = RATE_DICT[currency]
+            cash_left = round(cash_left / rate, 2)
         else:
             raise ValueError
-        str_currency = RATE_DICT[currency][0]
         if cash_left > 0:
             return f'На сегодня осталось {cash_left} {str_currency}'
         cash_left = abs(cash_left)
